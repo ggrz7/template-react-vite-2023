@@ -2,9 +2,8 @@ import {BrowserRouter as Router, Link, Routes, Route} from "react-router-dom";
 import Home from "./pages/home";
 
 import CssBaseline from '@mui/material/CssBaseline';
-import './App.css'
 
-const  App = () => {
+const  Index = () => {
 	return (
 		<>
 			<CssBaseline/>
@@ -27,4 +26,4 @@ const  App = () => {
 	);
 }
 
-export default App;
+export default Index;
