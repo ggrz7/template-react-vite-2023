@@ -1,9 +1,11 @@
-import {BrowserRouter as Router, Link, Routes, Route} from "react-router-dom";
-import Home from "./pages/home";
+import {BrowserRouter as Router, Link, Navigate, Route, Routes} from "react-router-dom";
 
+import '../locales/i18n.ts';
+import Home from "./pages/home";
 import CssBaseline from '@mui/material/CssBaseline';
 
-const  Index = () => {
+const App = () => {
+
 	return (
 		<>
 			<CssBaseline/>
@@ -12,13 +14,15 @@ const  Index = () => {
 					<nav>
 						<ul>
 							<li>
-								<Link to="/">Home</Link>
+								<Link to="/login">Home</Link>
 							</li>
 						</ul>
 					</nav>
 
 					<Routes>
-						<Route path="/" Component={Home}/>
+						<Route path="/login" Component={Home}/>
+						<Route path="/ciao" Component={Home}/>
+						<Route path="*" element={<Navigate replace to="/home" />}/>
 					</Routes>
 				</div>
 			</Router>
@@ -26,4 +30,4 @@ const  Index = () => {
 	);
 }
 
-export default Index;
+export default App;
