@@ -1,30 +1,30 @@
-import {BrowserRouter as Router, Link, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import {Helmet} from 'react-helmet-async';
 
-import '../locales/i18n.ts';
 import Home from "./pages/home";
-import CssBaseline from '@mui/material/CssBaseline';
+
+import {useTranslation} from "react-i18next";
+import '../locales/i18n.ts';
+
 
 const App = () => {
+	const {i18n} = useTranslation();
 
 	return (
 		<>
-			<CssBaseline/>
 			<Router>
-				<div>
-					<nav>
-						<ul>
-							<li>
-								<Link to="/login">Home</Link>
-							</li>
-						</ul>
-					</nav>
+				<Helmet
+					titleTemplate="LemonBulls"
+					defaultTitle="LemonBulls"
+					htmlAttributes={{lang: i18n.language}}
+				>
+					<meta name="description" content="Create your trading strategy!"/>
+				</Helmet>
 
-					<Routes>
-						<Route path="/login" Component={Home}/>
-						<Route path="/ciao" Component={Home}/>
-						<Route path="*" element={<Navigate replace to="/home" />}/>
-					</Routes>
-				</div>
+				<Routes>
+					<Route path="/" Component={Home}/>
+					<Route path="*" element={<Navigate replace to="/"/>}/>
+				</Routes>
 			</Router>
 		</>
 	);

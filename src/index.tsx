@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {Provider} from 'react-redux';
+import {HelmetProvider} from 'react-helmet-async';
 
 import App from './app'
 
@@ -16,9 +17,11 @@ import '@fontsource/roboto/700.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<ThemeProvider>
-				<App/>
-			</ThemeProvider>
+			<HelmetProvider>
+				<ThemeProvider>
+					<App/>
+				</ThemeProvider>
+			</HelmetProvider>
 		</Provider>
 	</React.StrictMode>,
 )
