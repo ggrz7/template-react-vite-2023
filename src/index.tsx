@@ -1,14 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import {Provider} from 'react-redux';
+
 import App from './app'
+
+import {store} from "./providers/reduxStore";
+import ThemeProvider from "./providers/ThemeProvider";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+	<React.StrictMode>
+		<Provider store={store}>
+			<ThemeProvider>
+				<App/>
+			</ThemeProvider>
+		</Provider>
+	</React.StrictMode>,
 )
