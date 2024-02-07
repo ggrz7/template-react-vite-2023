@@ -1,3 +1,18 @@
 {
-  "title": "welcome"
+  "account_settings": "account settings",
+  "balance": "balance",
+  "chat": "chat",
+  "dashboard": "dashboard",
+  "dashboard_settings": "dashboard settings",
+  "logout": "logout",
+  "marketplace": "marketplace",
+  "my_profile": "my profile",
+  "notifications": "notifications",
+  "portfolio": "portfolio",
+  "strategies": "strategies",
+  "subscriber": "subscriber",
+  "subscribers": "subscribers",
+  "subscriptions": "subscriptions",
+  "title": "welcome",
+  "trader": "trader"
 }
