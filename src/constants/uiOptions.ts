@@ -1,13 +1,17 @@
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MailIcon from "@mui/icons-material/Mail";
 
-export const UserOptions = [
+export const userOptions = [
 	{
 		name: "notifications",
 		visible: true,
+		icon: NotificationsIcon,
 		route: '/notifications'
 	},
 	{
 		name: "chat",
 		visible: true,
+		icon: MailIcon,
 		route: '/chat'
 	},
 	{
@@ -28,7 +32,7 @@ export const UserOptions = [
 	},
 ]
 
-export const AppOptions = [
+export const appOptions = [
 	{
 		name: "dashboard",
 		route: '/'

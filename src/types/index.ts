@@ -1,3 +1,4 @@
+
 declare type FCProps = {
-	children?: ReactNode
+	children?: React.ReactNode
 }
