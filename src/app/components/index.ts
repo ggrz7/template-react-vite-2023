@@ -1,2 +1,2 @@
-export { default as MenuBar } from "./UI/MenuBar.tsx"
-export { default as SideBar } from "./UI/SideBar.tsx"
+export { default as LayoutPrivate } from './UI/LayoutPrivate'
+export { PublicRoute, PrivateRoute } from './UI/Route'
