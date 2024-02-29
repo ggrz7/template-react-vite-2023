@@ -1,4 +1,8 @@
 
-declare type FCProps = {
-	children?: React.ReactNode
+declare type UserInfo = {
+	username: string
+	email: string
+	firstName?: string
+	lastName?: string
+	role?: string
 }
