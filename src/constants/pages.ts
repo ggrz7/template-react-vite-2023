@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "../app/pages/home";
 import SignIn from "../app/pages/auth/login";
+import VerifyMagicLink from "../app/pages/auth/verifyMagicLink";
+
 
 export interface Route {
 	path?: string,
@@ -8,7 +10,9 @@ export interface Route {
 	private?: boolean,
 }
 
-type RouteName = 'HOME' | 'SIGN_IN'
+type RouteName = 'HOME'
+	| 'SIGN_IN'
+	| 'VERIFY'
 
 const PAGES: Record<RouteName, Route> = {
 	HOME: {
@@ -16,11 +20,14 @@ const PAGES: Record<RouteName, Route> = {
 		path: "/",
 		private: true,
 	},
-
+	VERIFY: {
+		component: VerifyMagicLink,
+		path: "/verify",
+	},
 	SIGN_IN: {
 		component: SignIn,
 		path: "/signIn",
-	}
+	},
 }
 
 export default PAGES

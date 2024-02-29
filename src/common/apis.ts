@@ -37,41 +37,69 @@ export const signIn = async ({email}: { email: string }) => {
 			password: `password${Math.random().toString().slice(0, 8)}`,
 			options: {
 				userAttributes: {email}
+				//, autoSignIn: {authFlowType: "CUSTOM_WITH_SRP"},
 			},
 		});
-		return await requestMagicLink(email);
-	} catch (e) {
-		return console.error(JSON.stringify(e));
+	} catch (e: any) {
+		if ("UsernameExistsException" !== e?.name && "UsernameExistsException" !== e?.["__type"]) {
+			console.log(JSON.stringify(e))
+		}
 	}
+
+	return (await requestMagicLink(email));
 }
 
 export const answerCustomChallenge = async (email: string, challengeResponse: string) => {
+
 	try {
-		await authSignIn({
-			username: email,
-			options: {userAttributes: {email}, authFlowType: "CUSTOM_WITHOUT_SRP"}
-		});
-		try {
-			await confirmSignIn({
-				challengeResponse,
-				options: {userAttributes: {email}}
-			});
-			return true;
-		} catch {
-			return false;
-		}
-	} catch {
+		console.log("SIGN_IN ...");
+		await authSignIn({username: email, options: {userAttributes: {email}, authFlowType: "CUSTOM_WITHOUT_SRP"}});
+		console.log("SIGNED_IN");
+	} catch (e) {
+		console.log("SIGN_IN FAILED");
+		console.error(e);
 		return false;
 	}
+
+	try {
+		console.log("CONFIRM SIGN_IN ...");
+		await confirmSignIn({challengeResponse, options: {userAttributes: {email}}});
+		console.log("SIGN_IN CONFIRMED");
+	} catch (e) {
+		console.log("CONFIRM SIGN_IN FAILED");
+		console.error(e);
+		return false;
+	}
+
+	return isAuthenticated()
 }
 
 export const fetchUserInfo = () => fetchAuthSession().then(
-	(session: AuthSession) => {
-		getUserInfoFromEmail((session?.tokens?.idToken?.payload)?.email, session.tokens?.idToken?.toString())
-			.then(user => user)
-			.catch((e) => {
-				console.error(JSON.stringify(e));
-				return null
-			})
+	async (session: AuthSession) => {
+		try {
+			return await getUserInfoFromEmail((session?.tokens?.idToken?.payload)?.email, session.tokens?.idToken?.toString());
+		} catch (e) {
+			console.error(JSON.stringify(e));
+			return null;
+		}
 	}
 )
+
+export const createUserInfo = (userInfo: User) => fetchAuthSession()
+	.then(data => {
+		const jwtToken = data.tokens?.idToken;
+
+		if (!jwtToken) {
+			throw new Error();
+		}
+
+		return axios.post<User>(
+			`https://api.tradingpatterns.net/users`,
+			{...userInfo},
+			{
+				headers: {
+					Accept: "application/json",
+					Authorization: jwtToken.toString(),
+				},
+			})
+	});

@@ -9,7 +9,7 @@ export const setLoggedInAction = (isLogged: boolean): AuthAction => {
 	}
 }
 
-export const setUserInfoAction = (user: User) : AuthAction => {
+export const setUserInfoAction = (user?: User) : AuthAction => {
 	return {
 		type: Types.SET_USER_INFO,
 		payload: user,
