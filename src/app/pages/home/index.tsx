@@ -1,10 +1,9 @@
-import {LayoutPrivate} from "../../containers";
 
 const Home = () => {
 	return (
-		<LayoutPrivate>
+		<>
 			HOME
-		</LayoutPrivate>
+		</>
 	)
 }
 
