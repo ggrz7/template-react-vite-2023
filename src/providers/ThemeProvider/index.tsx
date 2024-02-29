@@ -1,6 +1,6 @@
 import React from 'react'
-import {ThemeProvider as MUIThemeProvider, createTheme} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
+import {ThemeProvider as MUIThemeProvider, createTheme} from "@mui/material";
 
 
 const theme = createTheme({
