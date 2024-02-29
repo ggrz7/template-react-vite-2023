@@ -1,14 +1,25 @@
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import {Helmet} from 'react-helmet-async';
-
-import Home from "./pages/home";
-
 import {useTranslation} from "react-i18next";
+
+import { PrivateRoute, PublicRoute } from "./components";
+import PAGES from "../constants/pages.ts";
+
 import '../locales/i18n.ts';
 
 
 const App = () => {
 	const {i18n} = useTranslation();
+
+	const routes = Object.values(PAGES).map((p) => {
+		const Component = p.component
+
+		if (p.private) {
+			return (<Route key={p.path} path={p.path} element={<PrivateRoute><Component/></PrivateRoute>}/>);
+		} else {
+			return (<Route key={p.path} path={p.path} element={<PublicRoute><Component/></PublicRoute>}/>);
+		}
+	});
 
 	return (
 		<>
@@ -22,7 +33,7 @@ const App = () => {
 				</Helmet>
 
 				<Routes>
-					<Route path="/" Component={Home}/>
+					{routes}
 					<Route path="*" element={<Navigate replace to="/"/>}/>
 				</Routes>
 			</Router>
