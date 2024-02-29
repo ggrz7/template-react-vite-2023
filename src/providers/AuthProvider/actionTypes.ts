@@ -15,8 +15,7 @@ type ActionMap<M extends { [index: string]: unknown }> = {
 };
 
 type AuthActionPayload = {
-	[Types.LOGIN]: undefined;
-	[Types.LOGOUT]: undefined;
+	[Types.SET_LOGGED_IN]: boolean;
 	[Types.SET_USER_INFO]: User;
 }
 

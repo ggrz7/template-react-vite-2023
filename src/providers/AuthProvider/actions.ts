@@ -2,15 +2,10 @@ import * as Types from "./types";
 import {User} from "../../common/models.ts";
 import {AuthAction} from "./actionTypes.ts";
 
-export const loginAction = (): AuthAction => {
+export const setLoggedInAction = (isLogged: boolean): AuthAction => {
 	return {
-		type: Types.LOGIN
-	}
-}
-
-export const logoutAction = (): AuthAction => {
-	return {
-		type: Types.LOGOUT
+		type: Types.SET_LOGGED_IN,
+		payload: isLogged
 	}
 }
 
