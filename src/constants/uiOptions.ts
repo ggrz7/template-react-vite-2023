@@ -1,7 +1,17 @@
+import SvgIcon from "@mui/material/SvgIcon/SvgIcon";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MailIcon from "@mui/icons-material/Mail";
 
-export const userOptions = [
+
+export type Option = {
+	name: string
+	visible?: boolean
+	icon?: typeof SvgIcon;
+	route?: string
+	action?: string
+	children?: Option[]
+}
+export const userOptions: Option[] = [
 	{
 		name: "notifications",
 		visible: true,
@@ -32,10 +42,10 @@ export const userOptions = [
 	},
 ]
 
-export const appOptions = [
+export const appOptions: Option[] = [
 	{
 		name: "dashboard",
-		route: '/'
+		route: '/dashboard'
 	},
 	{
 		name: "trader",
