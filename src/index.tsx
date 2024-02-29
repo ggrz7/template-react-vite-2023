@@ -1,27 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Provider} from 'react-redux';
 import {HelmetProvider} from 'react-helmet-async';
 
-import App from './app'
-
-import {store} from "./providers/reduxStore";
+import ReduxProvider from "./providers/ReduxProvider";
 import ThemeProvider from "./providers/ThemeProvider";
+import App from './app'
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
+import AuthProvider from "./providers/AuthProvider";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<HelmetProvider>
-				<ThemeProvider>
-					<App/>
-				</ThemeProvider>
-			</HelmetProvider>
-		</Provider>
+		<ReduxProvider>
+			<AuthProvider>
+				<HelmetProvider>
+					<ThemeProvider>
+						<App/>
+					</ThemeProvider>
+				</HelmetProvider>
+			</AuthProvider>
+		</ReduxProvider>
 	</React.StrictMode>,
 )
