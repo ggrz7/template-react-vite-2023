@@ -11,7 +11,7 @@ interface PrivateRouteProps {
 
 const PrivateRoute = ({children}: PrivateRouteProps) => {
 	const { state } = useAuth()
-	const { loggedIn } = state
+	const { loggedIn } = state || {}
 
 	if (loggedIn == null) {
 		return (<div></div>)

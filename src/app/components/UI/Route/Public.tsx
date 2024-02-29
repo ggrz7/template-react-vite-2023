@@ -9,7 +9,7 @@ interface PublicRouteProps {
 
 const PublicRoute = ({ children }: PublicRouteProps) => {
 	const { state } = useAuth()
-	const { loggedIn } = state
+	const { loggedIn } = state || {}
 
 
 	if (loggedIn == null) {
