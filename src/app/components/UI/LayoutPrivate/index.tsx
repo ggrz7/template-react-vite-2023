@@ -1,10 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 
-import {MenuBar, SideBar} from '../../components'
-import {userOptions, appOptions} from '../../../constants'
+import {userOptions, appOptions} from '../../../../constants'
+import MenuBar from "./MenuBar.tsx";
+import SideBar from "./SideBar.tsx";
 
-interface LayoutPrivateProps extends FCProps {
+
+interface LayoutPrivateProps {
+	children?: React.ReactNode
 }
 
 const LayoutPrivate = ({children}: LayoutPrivateProps) => {
@@ -20,13 +23,15 @@ const LayoutPrivate = ({children}: LayoutPrivateProps) => {
 	};
 
 	return (
-		<Box sx={{display: 'flex'}}>
+		<>
 			<MenuBar userOptions={userOptions} appOptions={appOptions} handleToggleDrawerOpen={handleToggleDrawerOpen}/>
 			<SideBar open={open} handleDrawerClose={handleDrawerClose}/>
-			{
-				children
-			}
-		</Box>
+			<Box component="main" sx={{p: 3, marginLeft: open ? 30: 10}}>
+				{
+					children
+				}
+			</Box>
+		</>
 	)
 }
 
