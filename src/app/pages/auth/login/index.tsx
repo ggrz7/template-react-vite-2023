@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { Card, TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
+import {FormEventHandler, useState} from 'react';
+import { TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../../../assets/logo.png'; // Adjust if necessary
-import { MdOutlineAutoAwesome } from "react-icons/md";
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 // import {signIn} from "../../../../common/apis.ts";
 import PAGES from "../../../../constants/pages.ts";
-import {useAuth} from "../../../../providers/AuthProvider";
+import {signIn} from "../../../../common/apis.ts";
 
 const Login = () => {
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
-	const { signIn } = useAuth()
-
-	const onSubmit = async (event) => {
+	const onSubmit: FormEventHandler<HTMLFormElement> | undefined = async (event) => {
 		event.preventDefault();
 		const formData = new FormData(event.currentTarget);
 		const values = {
@@ -22,10 +20,11 @@ const Login = () => {
 
 		try {
 			setLoading(true);
-			const response = await signIn?.(values);
+			await signIn(values);
 			navigate(PAGES.VERIFY.path || "", { replace: true, state: { email: values.email } });
 		} catch (e) {
-			console.error(e?.response?.data?.message || e?.message || e); // Use a snackbar or dialog to show error
+			if (e instanceof SignInError)
+				console.error(e?.response?.data?.message || e?.message || e); // Use a snackbar or dialog to show error
 		} finally {
 			setLoading(false);
 		}
@@ -66,7 +65,7 @@ const Login = () => {
 					{loading ? <CircularProgress size={24} /> : 'Sign in with Email'}
 				</Button>
 				<Box display="flex" alignItems="center" bgcolor="rgba(253, 162, 253, 0.05)" p={2} borderRadius={2}>
-					{/*<MdOutlineAutoAwesome />*/}
+					<AutoAwesomeIcon />
 					<Typography variant="body2" sx={{ pl: 2 }}>
 						We’ll email you a magic code for a password-free sign in.
 					</Typography>
