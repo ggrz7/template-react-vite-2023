@@ -1,4 +1,3 @@
-import { signOut } from "aws-amplify/auth";
 import * as Types from "./types";
 import {User} from "../../common/models.ts";
 
@@ -23,10 +22,5 @@ export type AuthAction = ActionMap<AuthActionPayload>[keyof ActionMap<AuthAction
 
 export type AuthContextType = {
 	loggedIn: boolean | null
-	isAuthenticated: () => Promise<boolean>
-	signIn: (args: { email: string }) => Promise<unknown>
-	answerCustomChallenge: (email: string, answer: string) => Promise<boolean>
-	signOut: typeof signOut,
 	userInfo: UserInfo | null
 }
-

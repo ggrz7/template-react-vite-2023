@@ -1,16 +1,10 @@
-import { signOut } from "aws-amplify/auth";
 import * as Types from "./types";
 import {AuthAction, AuthContextType} from "./actionTypes.ts";
-import {answerCustomChallenge, isAuthenticated, signIn} from "../../common/apis.ts";
 
-export const initState = (): AuthContextType => ({
+export const initState: AuthContextType = {
 	loggedIn: null,
-	isAuthenticated,
-	signIn: signIn,
-	answerCustomChallenge: answerCustomChallenge,
-	signOut: signOut,
 	userInfo: null,
-})
+}
 
 export const authReducer = (state: AuthContextType, action: AuthAction) => {
 	const { type} = action
