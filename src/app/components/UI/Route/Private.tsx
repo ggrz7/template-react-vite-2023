@@ -1,8 +1,8 @@
 import React from "react";
 import {Navigate} from 'react-router-dom';
 import LayoutPrivate from "../LayoutPrivate";
-import PAGES from "../../../../constants/pages.ts";
-import {useAuth} from "../../../../providers/AuthProvider";
+import PAGES from "../../../../constants/pages";
+import {useAuthState} from "../../../../providers/AuthProvider/hooks";
 
 
 interface PrivateRouteProps {
@@ -10,7 +10,7 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({children}: PrivateRouteProps) => {
-	const {  loggedIn, userInfo } = useAuth()
+	const { loggedIn, userInfo } = useAuthState()
 
 	console.log(loggedIn)
 

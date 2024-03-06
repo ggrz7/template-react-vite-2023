@@ -1,14 +1,15 @@
 import * as React from "react";
-import {useAuth} from "../../../../providers/AuthProvider";
+import {useAuthState} from "../../../../providers/AuthProvider/hooks";
 import {Navigate} from "react-router-dom";
-import PAGES from "../../../../constants/pages.ts";
+import PAGES from "../../../../constants/pages";
 
 interface PublicRouteProps {
 	children?: React.ReactNode
 }
 
 const PublicRoute = ({ children }: PublicRouteProps) => {
-	const { loggedIn } = useAuth()
+	const { loggedIn } = useAuthState()
+
 
 	if (loggedIn == null) {
 		return (<div></div>)

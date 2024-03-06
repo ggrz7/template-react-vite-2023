@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { TextField, Button, Grid, Container, Typography } from '@mui/material';
 import { getCurrentUser } from "aws-amplify/auth";
-import {useAuth} from "../../../providers/AuthProvider";
-import {createUserInfo} from "../../../common/apis.ts";
-import {setUserInfoAction} from "../../../providers/AuthProvider/actions.ts";
+import {useAuthDispatch} from "../../../providers/AuthProvider/hooks";
+import {createUserInfo} from "../../../common/apis";
+import {setUserInfoAction} from "../../../providers/AuthProvider/actions";
 
 export function UserPage() {
-	const { dispatch } = useAuth()
+	const dispatch = useAuthDispatch()
 
 	const onFinish = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

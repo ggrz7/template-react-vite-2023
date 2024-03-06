@@ -3,10 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import Logo from "../../../../assets/logo.png"; // Adjust if necessary
 import VerificationInput from 'react-verification-input';
-// import {answerCustomChallenge} from "../../../../common/apis.ts";
 import PAGES from "../../../../constants/pages.ts";
-import {useAuth} from "../../../../providers/AuthProvider";
-import {setLoggedInAction} from "../../../../providers/AuthProvider/actions.ts"; // Assuming you have a similar MUI compatible component
+import {answerCustomChallenge} from "../../../../common/apis.ts";
 
 const VERIFICATION_CODE_LENGTH = 6;
 
@@ -14,8 +12,6 @@ const VerifyMagicLink = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
-
-	const {answerCustomChallenge} = useAuth()
 
 	const email = location.state?.email;
 
